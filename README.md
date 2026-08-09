@@ -4,6 +4,19 @@ Maan Mantra is a machine learning based web application that predicts a student'
 
 The project combines a trained Scikit-learn model with a FastAPI backend and a simple HTML, CSS, and JavaScript frontend.
 
+.
+.
+## Live Demo
+
+The application is deployed on Render.
+
+🌐 Live Website: (https://maan-mantra-1.onrender.com)
+
+You can directly open the website using the link above.
+.
+.
+
+
 ## Features
 
 - Student mental health score prediction
