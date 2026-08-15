@@ -63,9 +63,9 @@ def predict(data: StudentData):
        'Purpose_Of_Use': data.Purpose_Of_Use,
        'Avg_Daily_Usage_Hours': data.Avg_Daily_Usage_Hours,
        'Daily_Unlocks': data.Daily_Unlocks,
-       'Study_Hours': data.Study_Hours,
-       'Physical_Activity_Hours': data.Physical_Activity_Hours,
-       'Sleep_Hours_Per_Night': data.Sleep_Hours_Per_Night,
+        'Study_Hours': float = Field(..., ge=0, le=24, description="Number of study hours per day (0-24)")
+        'Physical_Activity_Hours': float = Field(..., ge=0, le=24, description="Number of physical activity hours per day (0-24)")
+        'Sleep_Hours_Per_Night': float = Field(..., ge=0, le=24, description="Number of sleep hours per night (0-24)")
        'Stress_Level': data.Stress_Level
    }])
    prediction = model.predict(input_row)[0]
