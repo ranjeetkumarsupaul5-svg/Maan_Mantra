@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const API_BASE = "https://maan-mantra.onrender.com";
+  const API_BASE = "https://maan-mantra-1.onrender.com";
 
   const form = document.getElementById("predict-form");
   const submitBtn = document.getElementById("submit-btn");
@@ -201,10 +201,16 @@
   }
 
   function renderError(label, copy) {
-    errorLabelEl.textContent = label;
-    errorCopyEl.textContent = copy;
+    if (errorLabelEl) {
+        errorLabelEl.textContent = label;
+    }
+
+    if (errorCopyEl) {
+        errorCopyEl.textContent = copy;
+    }
+
     showState("error");
-  }
+}
 
   // ---------------------------------------------------------
   // Parse FastAPI / Pydantic 422 error responses into
@@ -245,11 +251,26 @@
     showState("loading");
 
     try {
-      const res = await fetch(`${API_BASE}/predict`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const apiPayload = {
+    Age: payload.age,
+    Gender: payload.gender,
+    Country: payload.country,
+    Academic_Level: payload.academic_level,
+    Most_Used_Platform: payload.most_used_platform,
+    Purpose_Of_Use: payload.purpose_of_use,
+    Avg_Daily_Usage_Hours: payload.avg_daily_usage_hours,
+    Daily_Unlocks: payload.daily_unlocks,
+    Study_Hours: payload.study_hours,
+    Physical_Activity_Hours: payload.physical_activity_hours,
+    Sleep_Hours_Per_Night: payload.sleep_hours_per_night,
+    Stress_Level: payload.stress_level
+};
+
+const res = await fetch(`${API_BASE}/predict`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(apiPayload),
+});
 
       if (res.status === 422) {
         const body = await res.json().catch(() => null);
